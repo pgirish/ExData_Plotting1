@@ -1,4 +1,5 @@
 # Read the entire data from the given text file
+# subset the data by filtering two days of data
 dataFile <- "household_power_consumption.txt"
 data <- read.table(dataFile, header=TRUE, sep=";", stringsAsFactors=FALSE)
 dataSubSet <- data[data$Date %in% c("1/2/2007","2/2/2007") ,]
@@ -6,9 +7,6 @@ dataSubSet <- data[data$Date %in% c("1/2/2007","2/2/2007") ,]
 ## read in date/time info in format 'd/m/y h:m:s'
 datetime <- paste(dataSubSet$Date, dataSubSet$Time, sep=" ")
 datetime <- strptime(datetime, "%d/%m/%Y %H:%M:%S")
-
-#convert data format for date
-globalActivePower <- as.numeric(dataSubSet$Global_active_power)
 
 #get the submetering data
 subMetering1 <- as.numeric(dataSubSet$Sub_metering_1)
